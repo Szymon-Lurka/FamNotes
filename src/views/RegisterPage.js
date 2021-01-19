@@ -1,8 +1,9 @@
 import React from 'react';
+import AccountPanelTemplate from '../components/templates/AccountPanelTemplate';
 
 const RegisterPage = () => {
     return (
-        <div>RegisterPage</div>
+        <AccountPanelTemplate register />
     );
 }
 

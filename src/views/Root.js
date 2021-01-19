@@ -4,15 +4,18 @@ import { routes } from '../routes';
 import MainPage from './MainPage';
 import LoginPage from './LoginPage';
 import RegisterPage from './RegisterPage';
+import MainTemplate from '../components/templates/MainTemplate';
 
 function Root() {
   return (
     <Router>
-      <Switch>
-        <Route exact path={routes.home} component={MainPage} />
-        <Route exact path={routes.login} component={LoginPage} />
-        <Route exact path={routes.register} component={RegisterPage} />
-      </Switch>
+      <MainTemplate>
+        <Switch>
+          <Route exact path={routes.home} component={MainPage} />
+          <Route exact path={routes.login} component={LoginPage} />
+          <Route exact path={routes.register} component={RegisterPage} />
+        </Switch>
+      </MainTemplate>
     </Router>
   );
 }

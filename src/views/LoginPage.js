@@ -1,8 +1,11 @@
 import React from 'react';
+import AccountPanelTemplate from '../components/templates/AccountPanelTemplate';
 
 const LoginPage = () => {
     return (
-        <div>LoginPage</div>
+        <>
+            <AccountPanelTemplate />
+        </>
     );
 }
 
