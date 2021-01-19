@@ -10,24 +10,33 @@ import CreateRoom from './CreateRoom';
 import MyRooms from './MyRooms';
 import Settings from './Settings';
 import AboutApp from './AboutApp';
+import { Provider } from 'react-redux';
+import store from '../store/index';
+import { connect } from 'react-redux';
 
-function Root() {
+function Root({ isLogged }) {
   return (
-    <Router>
-      <MainTemplate>
-        <Switch>
-          <Route exact path={routes.home} component={MainPage} />
-          <Route exact path={routes.login} component={LoginPage} />
-          <Route exact path={routes.register} component={RegisterPage} />
-          <Route exact path={routes.info} component={AboutApp} />
-          <Route exact path={routes.settings} component={Settings} />
-          <Route exact path={routes.myRooms} component={MyRooms} />
-          <Route exact path={routes.joinRoom} component={JoinRoom} />
-          <Route exact path={routes.createRoom} component={CreateRoom} />
-        </Switch>
-      </MainTemplate>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <MainTemplate>
+          <Switch>
+            <Route exact path={routes.home} component={MainPage} />
+            <Route exact path={routes.login} component={LoginPage} />
+            <Route exact path={routes.register} component={RegisterPage} />
+            <Route exact path={routes.info} component={AboutApp} />
+            <Route exact path={routes.settings} component={Settings} />
+            <Route exact path={routes.myRooms} component={MyRooms} />
+            <Route exact path={routes.joinRoom} component={JoinRoom} />
+            <Route exact path={routes.createRoom} component={CreateRoom} />
+          </Switch>
+        </MainTemplate>
+      </Router>
+    </Provider>
   );
 }
 
-export default Root;
+const mapStateToProps = (isLogged = null) => ({
+  isLogged,
+})
+
+export default connect(mapStateToProps)(Root);
