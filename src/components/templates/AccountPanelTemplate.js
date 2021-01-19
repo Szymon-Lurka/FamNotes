@@ -6,6 +6,7 @@ import Paragraph from '../atoms/Paragraph/Paragraph';
 import Button from '../atoms/Button/Button';
 import { Link, Redirect } from 'react-router-dom';
 import backgroundImg from '../../assets/img/background.png';
+import PropTypes from 'prop-types';
 
 const StyledWrapper = styled.div`
 width: 100vw;
@@ -72,7 +73,7 @@ const AccountPanelTemplate = ({ register }) => {
                 />
                 <Input
                     placeholder="HASŁO"
-                    type="passowrd"
+                    type="password"
                     name="password"
                 />
                 <Button onClick={handleClick}>{register ? "Zarejestruj się!" : "Zaloguj się!"}</Button>
@@ -82,4 +83,12 @@ const AccountPanelTemplate = ({ register }) => {
         </StyledWrapper>
     );
 }
+
+AccountPanelTemplate.propTypes = {
+    register: PropTypes.bool,
+};
+AccountPanelTemplate.defaultProps = {
+    register: null,
+};
+
 export default AccountPanelTemplate;
