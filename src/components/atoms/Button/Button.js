@@ -11,6 +11,7 @@ font-family:'Montserrat';
 font-weight: ${({ theme }) => theme.bold};
 font-size: ${({ theme }) => theme.fontSize.s};
 text-transform:uppercase;
+display:${({ isVisible }) => isVisible ? "none" : "block"};
 `;
 
 export default Button;

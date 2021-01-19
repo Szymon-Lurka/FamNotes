@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Heading from '../atoms/Heading/Heading';
 import Input from '../atoms/Input/Input';
@@ -14,6 +14,131 @@ import {
 import { connect } from 'react-redux';
 import { authenticate, userRegister } from '../../action/index';
 
+
+const AccountPanelTemplate = ({ register, authenticate, isLogged, userRegister, isRegisterSuccess }) => {
+    const [registerState, setRegisterState] = useState(false);
+    useEffect(() => {
+        if (isRegisterSuccess === false && register) {
+            setRegisterState(true);
+        } else {
+            setRegisterState(false);
+        }
+    }, [isRegisterSuccess])
+    if (isLogged) {
+        return <Redirect to="/" />
+    }
+    return (
+        <Formik
+            initialValues={{ login: '', password: '' }}
+            onSubmit={({ login, password }) => {
+                if (register) {
+                    userRegister(login, password);
+                } else {
+                    authenticate(login, password);
+                }
+            }}
+        >
+            {({ handleChange, handleBlur, values, isSubmitting }) => {
+                return (
+                    <Form>
+                        {console.log(isRegisterSuccess)}
+                        <StyledWrapper>
+                            <Heading as="h2">FAMNOTES</Heading>
+                            <StyledHeading>Twoja nowa ulubiona aplikacja do zarządzania obowiązkami w domu!</StyledHeading>
+                            <StyledForm>
+                                <Heading as="h2">{register ? isRegisterSuccess ? "Pomyślnie zarejestrowano!" : "Zarejestruj się!" : "Zaloguj się!"}</Heading>
+                                {registerState ? (
+                                    <StyledLabel style={{ color: 'red' }}>
+                                        Użytkownik o takiej nazwie już istnieje!
+                                        <StyledWarningInput
+                                            placeholder="LOGIN"
+                                            type="text"
+                                            name="login"
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.login}
+                                        />
+                                    </StyledLabel>
+                                ) : (
+                                        <Input
+                                            placeholder="LOGIN"
+                                            type="text"
+                                            name="login"
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.login}
+                                            isVisible={isRegisterSuccess && register}
+                                        />
+                                    )}
+
+                                <Input
+                                    placeholder="HASŁO"
+                                    type="password"
+                                    name="password"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.password}
+                                    isVisible={isRegisterSuccess && register}
+                                />
+                                <Button
+                                    type="submit"
+                                    disabled={register && isRegisterSuccess}
+                                    isVisible={isRegisterSuccess && register}
+                                >
+                                    {register ? "Zarejestruj się!" :
+                                        "Zaloguj się!"}
+                                </Button>
+                                <StyledSmallButton
+                                    secondary
+                                    as={Link}
+                                    to={register ? "/login" : "/register"}>
+                                    {register ? "Chcę się zalogować!" : "Chcę się zarejestrować!"}
+                                </StyledSmallButton>
+                            </StyledForm>
+                            <StyledInfoLink
+                                as={Link}
+                                to="/info">
+                                Dowiedz się więcej o <span>FAMNOTES</span>
+                            </StyledInfoLink>
+                        </StyledWrapper>
+                    </Form>
+                )
+            }}
+        </Formik>
+    );
+}
+
+AccountPanelTemplate.propTypes = {
+    register: PropTypes.bool,
+    authenticate: PropTypes.func,
+    userID: PropTypes.string,
+    userRegister: PropTypes.func,
+    isRegisterSuccess: PropTypes.bool,
+    isLogged: PropTypes.bool,
+};
+AccountPanelTemplate.defaultProps = {
+    register: null,
+    isLogged: false,
+};
+
+const mapStateToProps = (store) => ({
+    isLogged: store.isLogged,
+    isRegisterSuccess: store.isRegisterSuccess,
+});
+
+const mapDispatchToProps = dispatch => ({
+    authenticate: (username, password) => dispatch(authenticate(username, password)),
+    userRegister: (username, password) => dispatch(userRegister(username, password))
+});
+
+const StyledLabel = styled.label`
+color: red;
+text-align:center;
+width: 100%;
+`;
+const StyledWarningInput = styled(Input)`
+background-color: #A1030399;
+`;
 const StyledWrapper = styled.div`
 width: 100vw;
 height: 100vh;
@@ -51,6 +176,7 @@ text-decoration: underline;
 display: block;
 color: black;
 text-align:center;
+opacity: ${({ isVisible }) => isVisible ? "0" : "1"};
 @media(max-width:1572px) {
     width: 60%;
 }
@@ -87,82 +213,5 @@ const StyledHeading = styled(Heading)`
     font-size: 1.8rem;
 }
 `;
-const AccountPanelTemplate = ({ register, authenticate, isLogged: { isLogged }, userRegister, }) => {
-    // useEffect(() => {
-    //     if (isLogged === 'ok') {
-    //         console.log("no niby działa");
-    //         return <Redirect to="/" />
-    //     } else if (isLogged === undefined) {
-    //         return;
-    //     }
-    // }, [isLogged]);
-    if (isLogged) {
-        return <Redirect to="/" />
-    }
-    return (
-        <Formik
-            initialValues={{ login: '', password: '' }}
-            onSubmit={({ login, password }) => {
-                if (register) {
-                    userRegister(login, password);
-                } else {
-                    authenticate(login, password);
-                }
-            }}
-        >
-            {({ handleChange, handleBlur, values }) => {
-                return (
-                    <Form>
-                        <StyledWrapper>
-                            <Heading as="h2">FAMNOTES</Heading>
-                            <StyledHeading>Twoja nowa ulubiona aplikacja do zarządzania obowiązkami w domu!</StyledHeading>
-                            <StyledForm>
-                                <Heading as="h2">{register ? "Zarejestruj się!" : "Zaloguj się!"}</Heading>
-                                <Input
-                                    placeholder="LOGIN"
-                                    type="text"
-                                    name="login"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.login}
-                                />
-                                <Input
-                                    placeholder="HASŁO"
-                                    type="password"
-                                    name="password"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.password}
-                                />
-                                <Button type="submit">{register ? "Zarejestruj się!" : "Zaloguj się!"}</Button>
-                                <StyledSmallButton secondary as={Link} to={register ? "/login" : "/register"}>{register ? "Chcę się zalogować!" : "Chcę się zarejestrować!"}</StyledSmallButton>
-                            </StyledForm>
-                            <StyledInfoLink as={Link} to="/info">Dowiedz się więcej o <span>FAMNOTES</span></StyledInfoLink>
-                        </StyledWrapper>
-                    </Form>
-                )
-            }}
-        </Formik>
-    );
-}
-
-AccountPanelTemplate.propTypes = {
-    register: PropTypes.bool,
-    authenticate: PropTypes.func,
-    userID: PropTypes.string,
-    userRegister: PropTypes.func,
-};
-AccountPanelTemplate.defaultProps = {
-    register: null,
-};
-
-const mapStateToProps = (isLogged = false, nickName = false) => ({
-    isLogged, nickName
-});
-
-const mapDispatchToProps = dispatch => ({
-    authenticate: (username, password) => dispatch(authenticate(username, password)),
-    userRegister: (username, password) => dispatch(userRegister(username, password))
-});
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountPanelTemplate);

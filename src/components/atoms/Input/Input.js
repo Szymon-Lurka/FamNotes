@@ -7,6 +7,7 @@ font-weight: ${({ theme }) => theme.light};
 background-color: hsl(0,0%,96%);
 border:none;
 border-radius: 50px;
+display:${({ isVisible }) => isVisible ? "none" : "block"};
 ::placeholder {
     text-transform: uppercase;
     letter-spacing: 1px;

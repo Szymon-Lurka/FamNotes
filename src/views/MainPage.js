@@ -17,7 +17,7 @@ const MainPage = ({ isLogged, nickName }) => {
     return (
         <MainPagesTemplate>
             <StyledWrapper>
-                <div>TWOJA NAZWA UŻYTKOWNIKA: {nickName}</div>
+                <div>Witaj {nickName[0].toUpperCase() + nickName.substring(1)}! Co słychać?</div>
             </StyledWrapper>
         </MainPagesTemplate>
     );

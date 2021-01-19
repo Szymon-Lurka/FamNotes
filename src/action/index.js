@@ -33,12 +33,17 @@ export const userRegister = (login, password) => dispatch => {
         pwd: password,
     })
         .then(payload => {
-            console.log(payload);
-            dispatch({ type: REGISTER_SUCCESS, payload });
+            console.log(typeof payload.data);
+            if (typeof payload.data === 'string' || payload.data === '' || payload.data.length < 4) {
+                console.log('NIE POWIODŁO SIĘ!')
+                dispatch({ type: REGISTER_FAILURE, payload });
+            } else {
+                console.log('POWIODŁO SIĘ!')
+                dispatch({ type: REGISTER_SUCCESS, payload });
+            }
         })
         .catch(err => {
             console.log(err);
-            dispatch({ type: REGISTER_FAILURE });
         });
 }
 
