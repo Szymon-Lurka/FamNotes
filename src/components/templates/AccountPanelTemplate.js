@@ -8,8 +8,11 @@ import { connect } from 'react-redux';
 import { authenticate, userRegister } from '../../action/index';
 
 
-const AccountPanelTemplate = ({ register, authenticate, userRegister, isLogged, children }) => {
+const AccountPanelTemplate = ({ register, authenticate, userRegister, isLogged, children, state }) => {
     if (isLogged) {
+        return <Redirect to="/" />
+    }
+    if (state.isLogged) {
         return <Redirect to="/" />
     }
     return (
@@ -40,8 +43,9 @@ AccountPanelTemplate.defaultProps = {
     invalidLoginData: false,
 };
 
-const mapStateToProps = (store) => ({
-    isLogged: store.isLogged,
+const mapStateToProps = (state) => ({
+    isLogged: state.isLogged,
+    state,
 });
 
 const mapDispatchToProps = dispatch => ({

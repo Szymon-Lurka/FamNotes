@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Form } from 'formik';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -18,6 +18,12 @@ import {
 } from '../theme/AccountPanelTemplateStyles';
 
 const LoginPage = ({ loginFailedMessage }) => {
+    const local = localStorage.getItem('state');
+    if (local) {
+        if (JSON.parse(local).isLogged === true) {
+            return <Redirect to="/" />
+        }
+    }
     return (
         <AccountPanelTemplate>
             {({ handleChange, handleBlur, values }) => {

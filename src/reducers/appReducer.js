@@ -11,6 +11,7 @@ const appReducer = (state = initialState, action) => {
                 nickName: JSON.parse(action.payload.config.data).login,
                 userID: action.payload.data.userData.userID,
                 userTOKEN: action.payload.data.userData.userToken,
+                loginFailedMessage: null,
             };
         case LOGIN_FAILURE:
             return {
