@@ -21,10 +21,10 @@ export const authenticate = (login, password) => dispatch => {
                 dispatch({ type: LOGIN_SUCCESS, payload });
             }
             else {
-                dispatch({ type: LOGIN_FAILURE });
+                dispatch({ type: LOGIN_FAILURE, payload });
             }
         });
-}
+};
 
 export const userRegister = (login, password) => dispatch => {
     dispatch({ type: REGISTER_REQUEST });
@@ -33,8 +33,8 @@ export const userRegister = (login, password) => dispatch => {
         pwd: password,
     })
         .then(payload => {
-            console.log(typeof payload.data);
-            if (typeof payload.data === 'string' || payload.data === '' || payload.data.length < 4) {
+            console.log(payload);
+            if (typeof payload.data === 'string') {
                 console.log('NIE POWIODŁO SIĘ!')
                 dispatch({ type: REGISTER_FAILURE, payload });
             } else {
@@ -47,6 +47,7 @@ export const userRegister = (login, password) => dispatch => {
         });
 }
 
+// NEED TO REFACTOR - DOESN'T WORK YET
 export const logout = () => dispatch => {
     dispatch({ type: LOGOUT_REQUEST });
     return axios.get('http://localhost:9000/auth/logout', {
