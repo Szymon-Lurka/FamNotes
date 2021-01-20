@@ -16,6 +16,7 @@ import {
     StyledInfoLink,
     StyledHeading,
     StyledRegisterSuccessButton,
+    StyledHeadingInfo,
 } from '../theme/AccountPanelTemplateStyles';
 
 const RegisterPage = ({ isRegisterSuccess, registerMessage }) => {
@@ -35,7 +36,7 @@ const RegisterPage = ({ isRegisterSuccess, registerMessage }) => {
                                 </StyledHeading>
                             {isRegisterSuccess ? (
                                 <StyledForm>
-                                    <Heading as="h2">{registerMessage}</Heading>
+                                    <StyledHeadingInfo as="h2">{registerMessage}</StyledHeadingInfo>
                                     <StyledRegisterSuccessButton
                                         as={Link}
                                         to="/login">
@@ -94,7 +95,7 @@ const RegisterPage = ({ isRegisterSuccess, registerMessage }) => {
                                         >Zarejestruj się!
                                  </Button>
                                         <StyledSmallButton
-                                            secondary
+                                            secondary="true"
                                             as={Link}
                                             to="/login">
                                             Chcę się zalogować!

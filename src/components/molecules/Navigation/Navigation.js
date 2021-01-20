@@ -81,10 +81,6 @@ border-radius: 10px;
 }
 `;
 const Navigation = ({ logout }) => {
-    const handleLogout = () => {
-        console.log(logout);
-        logout();
-    }
     return (
         <StyledNav>
             <StyledUl>
@@ -131,7 +127,7 @@ const Navigation = ({ logout }) => {
                     </StyledLink>
                 </StyledLi>
                 <StyledLi>
-                    <StyledLink to="/login" onClick={handleLogout}>
+                    <StyledLink to="/login" onClick={() => logout()}>
                         <div className="hint">
                             Wyloguj się
                             </div>

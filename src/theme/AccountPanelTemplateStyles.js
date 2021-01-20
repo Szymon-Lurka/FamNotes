@@ -59,7 +59,9 @@ opacity: ${({ isVisible }) => isVisible ? "0" : "1"};
     font-size: 1.3rem;
 }
  `;
-
+export const StyledHeadingInfo = styled(Heading)`
+text-align:center;
+`;
 export const StyledRegisterSuccessButton = styled(Button)`
 display:flex;
 justify-content:center;

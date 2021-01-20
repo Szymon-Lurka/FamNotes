@@ -32,7 +32,7 @@ AccountPanelTemplate.propTypes = {
     register: PropTypes.bool,
     authenticate: PropTypes.func,
     isLogged: PropTypes.bool,
-    children: PropTypes.element.isRequired,
+    children: PropTypes.func.isRequired,
 };
 AccountPanelTemplate.defaultProps = {
     register: null,

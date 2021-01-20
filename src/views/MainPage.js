@@ -10,7 +10,7 @@ const StyledWrapper = styled.div`
 margin-top: 100px;
 `;
 
-const MainPage = ({ isLogged, nickName }) => {
+const MainPage = ({ isLogged, nickName, userID, userTOKEN }) => {
     if (!isLogged) {
         return <Redirect to="/login" />
     }
@@ -18,6 +18,8 @@ const MainPage = ({ isLogged, nickName }) => {
         <MainPagesTemplate>
             <StyledWrapper>
                 <div>Witaj {nickName[0].toUpperCase() + nickName.substring(1)}! Co słychać?</div>
+                <div>Twoje id: {userID}</div>
+                <div>Twój token sesji: {userTOKEN}</div>
             </StyledWrapper>
         </MainPagesTemplate>
     );
@@ -26,6 +28,8 @@ const MainPage = ({ isLogged, nickName }) => {
 const mapStateToProps = (state) => ({
     isLogged: state.isLogged,
     nickName: state.nickName,
+    userID: state.userID,
+    userTOKEN: state.userTOKEN,
 });
 
 MainPage.propTypes = {

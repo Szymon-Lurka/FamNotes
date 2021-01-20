@@ -21,7 +21,6 @@ const LoginPage = ({ loginFailedMessage }) => {
     return (
         <AccountPanelTemplate>
             {({ handleChange, handleBlur, values }) => {
-                console.log(loginFailedMessage);
                 return (
                     <Form>
                         <StyledWrapper>
@@ -63,7 +62,7 @@ const LoginPage = ({ loginFailedMessage }) => {
                                 >Zaloguj się!
                                 </Button>
                                 <StyledSmallButton
-                                    secondary
+                                    secondary="true"
                                     as={Link}
                                     to="/register">
                                     Chcę się zarejestrować!

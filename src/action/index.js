@@ -33,12 +33,9 @@ export const userRegister = (login, password) => dispatch => {
         pwd: password,
     })
         .then(payload => {
-            console.log(payload);
             if (typeof payload.data === 'string') {
-                console.log('NIE POWIODŁO SIĘ!')
                 dispatch({ type: REGISTER_FAILURE, payload });
             } else {
-                console.log('POWIODŁO SIĘ!')
                 dispatch({ type: REGISTER_SUCCESS, payload });
             }
         })
@@ -47,20 +44,16 @@ export const userRegister = (login, password) => dispatch => {
         });
 }
 
-// NEED TO REFACTOR - DOESN'T WORK YET
-export const logout = () => dispatch => {
+
+export const logout = () => (dispatch, getState) => {
     dispatch({ type: LOGOUT_REQUEST });
-    return axios.get('http://localhost:9000/auth/logout', {
-        headers: {
-            "Authorization": 'IUHN*)&AD *)g 8aD&G*&A(DGH *D&AHDA &*(HS AOUIDBAN(Y&DAG HOUIDSAH(&^DAG D(A&T^DT&DT)GSABUYHACN)&*SY(*HNXAB(&T)X^GASA^XS',
-        }
+    return axios.post('http://localhost:9000/auth/logout', {
+        id: getState().userID,
     })
         .then(payload => {
-            console.log(payload);
             dispatch({ type: LOGOUT_SUCCESS, payload });
         })
         .catch(err => {
-            console.log(err);
             dispatch({ type: LOGOUT_FAILURE })
         })
 };
