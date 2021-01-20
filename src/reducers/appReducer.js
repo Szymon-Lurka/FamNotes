@@ -11,6 +11,7 @@ const appReducer = (state = initialState, action) => {
                 nickName: JSON.parse(action.payload.config.data).login,
                 userID: action.payload.data.userData.userID,
                 userTOKEN: action.payload.data.userData.userToken,
+                userGroupID: action.payload.data.userData.userGroupID,
                 loginFailedMessage: null,
             };
         case LOGIN_FAILURE:
@@ -27,6 +28,7 @@ const appReducer = (state = initialState, action) => {
                 nickName: null,
                 userID: null,
                 userTOKEN: null,
+                userGroupID: null,
             };
         case REGISTER_FAILURE:
             return {
@@ -50,6 +52,7 @@ const appReducer = (state = initialState, action) => {
                 invalidLoginData: false,
                 registerMessage: '',
                 userTOKEN: null,
+                userGroupID: null,
             };
     };
 };

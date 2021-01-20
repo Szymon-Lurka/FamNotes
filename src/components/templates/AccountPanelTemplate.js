@@ -9,11 +9,11 @@ import { authenticate, userRegister } from '../../action/index';
 
 
 const AccountPanelTemplate = ({ register, authenticate, userRegister, isLogged, children, state }) => {
-    if (isLogged) {
-        return <Redirect to="/" />
-    }
-    if (state.isLogged) {
-        return <Redirect to="/" />
+    const local = localStorage.getItem('state');
+    if (local) {
+        if (JSON.parse(local).isLogged === true) {
+            return <Redirect to="/" />
+        }
     }
     return (
         <Formik

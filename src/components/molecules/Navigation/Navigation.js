@@ -89,7 +89,7 @@ const Navigation = ({ logout }) => {
                         exact to="/room/create"
                         activeClassName="active">
                         <div className="hint">
-                            Stwórz nowy pokój
+                            Stwórz nową grupę
                             </div>
                         <StyledIcon
                             src={addIcon}
@@ -99,7 +99,7 @@ const Navigation = ({ logout }) => {
                 <StyledLi>
                     <StyledLink exact to="/room/join">
                         <div className="hint">
-                            Dołącz do pokoju
+                            Dołącz do grupy
                             </div>
                         <StyledIcon
                             src={joinIcon}
@@ -109,7 +109,7 @@ const Navigation = ({ logout }) => {
                 <StyledLi>
                     <StyledLink exact to="/room">
                         <div className="hint">
-                            Twoje pokoje
+                            Twoja grupa
                             </div>
                         <StyledIcon
                             src={myIcon}

@@ -15,6 +15,10 @@ body {
 html {
     font-size: 62.5%;
 }
+@keyframes mainAnim {
+    0%{opacity:0}
+    100%{opacity:100}
+}
 `;
 
 export default GlobalStyle;

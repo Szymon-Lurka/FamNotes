@@ -18,12 +18,6 @@ import {
 } from '../theme/AccountPanelTemplateStyles';
 
 const LoginPage = ({ loginFailedMessage }) => {
-    const local = localStorage.getItem('state');
-    if (local) {
-        if (JSON.parse(local).isLogged === true) {
-            return <Redirect to="/" />
-        }
-    }
     return (
         <AccountPanelTemplate>
             {({ handleChange, handleBlur, values }) => {
