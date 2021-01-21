@@ -73,10 +73,11 @@ export const createGroup = (name, description, tag) => (dispatch, getState) => {
         userID: getState().userID,
     })
         .then(payload => {
-            dispatch({ type: CREATEGROUP_SUCCESS, payload });
-        })
-        .catch(err => {
-            dispatch({ type: CREATEGROUP_FAILURE });
+            if (payload.data.isSuccess) {
+                dispatch({ type: CREATEGROUP_SUCCESS, payload });
+            } else {
+                dispatch({ type: CREATEGROUP_FAILURE, payload });
+            }
         });
 };
 
@@ -86,8 +87,6 @@ export const exitGroup = () => (dispatch, getState) => {
         userID: getState().userID,
     })
         .then(payload => {
-            console.log(payload);
-            console.log(getState().userGroupID);
             dispatch({ type: EXITGROUP_SUCCESS, payload });
         })
         .catch(err => {

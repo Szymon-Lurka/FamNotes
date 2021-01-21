@@ -1,67 +1,81 @@
+import React, { useState } from 'react';
 import {
     StyledMainHeading,
     StyledParagraph,
-    StyledInput,
     StyledButton,
-    StyledTextArea,
 } from '../../../views/styles/CreateRoomStyles';
 import { Form } from 'formik';
 import CreateGroup from './CreateGroup';
+import { connect } from 'react-redux';
+import BadName from './CreateGroupFormUtils/BadName';
+import BadDescription from './CreateGroupFormUtils/BadDescription';
+import BadTag from './CreateGroupFormUtils/BadTag';
 
-const CreateGroupForm = () => (
-    <CreateGroup>
-        {({ handleChange, handleBlur, values }) => {
-            return (
-                <Form>
-                    <StyledInput
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        name="name"
-                        placeholder="Nazwa grupy"
-                        value={values.name}
-                    />
-                    <StyledMainHeading
-                        second="true"
-                        as="h2">
-                        Grupa nazwana? To teraz możesz ją krótko opisać.
-                                                        </StyledMainHeading>
-                    <StyledParagraph
-                        second="true">
-                        Jaki jest cel tej grupy? Daj znać przyszłym członkom grupy po co właściwie tu są!
-                                                    </StyledParagraph>
-                    <StyledTextArea
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        name="description"
-                        placeholder="Opis grupy"
-                        value={values.description}
-                        as="textarea"
-                    />
-                    <StyledMainHeading
-                        third="true"
-                        as="h2">
-                        Na koniec dodaj tag! (Max. 6 znaków)
+const CreateGroupForm = ({ failedMessage }) => {
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const handleSubmitClick = () => {
+        setIsSubmitted(true);
+    }
+    return (
+        <CreateGroup>
+            {({ handleChange, handleBlur, values }) => {
+                let local = JSON.parse(localStorage.getItem('state'));
+                return (
+                    <Form>
+                        <BadName
+                            failedMessage={failedMessage}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.name}
+                            isSubmitted={isSubmitted}
+                        />
+                        <StyledMainHeading
+                            second="true"
+                            as="h2">
+                            Grupa nazwana? To teraz możesz ją krótko opisać.
+                    </StyledMainHeading>
+                        <StyledParagraph
+                            second="true">
+                            Jaki jest cel tej grupy? Daj znać przyszłym członkom grupy po co właściwie tu są!
+                    </StyledParagraph>
+                        <BadDescription
+                            failedMessage={failedMessage}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.description}
+                            isSubmitted={isSubmitted}
+                        />
+                        <StyledMainHeading
+                            third="true"
+                            as="h2">
+                            Na koniec dodaj tag! (Max. 6 znaków)
                                                     </StyledMainHeading>
-                    <StyledParagraph
-                        third="true">
-                        Inni użytkownicy będą mogli dołączyć do twojej grupy wpisując jej tag!
+                        <StyledParagraph
+                            third="true">
+                            Inni użytkownicy będą mogli dołączyć do twojej grupy wpisując jej tag!
                                                     </StyledParagraph>
-                    <StyledInput
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        name="tag"
-                        placeholder="TAG Grupy"
-                        value={values.tag}
-                        third="true"
-                    />
-                    <StyledButton
-                        type="submit">
-                        Utwórz grupę!
+                        <BadTag
+                            failedMessage={failedMessage}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.tag}
+                            isSubmitted={isSubmitted}
+                        />
+                        <StyledButton
+                            type="submit"
+                            onClick={handleSubmitClick}
+                        >
+                            Utwórz grupę!
                     </StyledButton>
-                </Form>
-            )
-        }}
-    </CreateGroup>
-);
+                    </Form>
+                )
+            }}
+        </CreateGroup>
+    );
+};
 
-export default CreateGroupForm;
+const mapStateToProps = (store) => ({
+    failedMessage: store.failedMessage,
+})
+
+export default connect(mapStateToProps)(CreateGroupForm);

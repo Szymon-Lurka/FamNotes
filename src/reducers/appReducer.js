@@ -1,19 +1,8 @@
-import { CREATEGROUP_SUCCESS, EXITGROUP_SUCCESS, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAILURE, REGISTER_SUCCESS } from '../action/index';
+import { CREATEGROUP_SUCCESS, CREATEGROUP_FAILURE, EXITGROUP_SUCCESS, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAILURE, REGISTER_SUCCESS } from '../action/index';
 const initialState = {};
 
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
-        case EXITGROUP_SUCCESS:
-            return {
-                ...state,
-                isLogged: false,
-                nickName: action.payload.data.login,
-                userGroupID: null,
-                userID: state.payload.data.id,
-                userTOKEN: state.payload.data.currentTokenId,
-                isCreatedGroup: null,
-                isExit: true,
-            }
         case LOGIN_SUCCESS:
             return {
                 ...state,
@@ -38,13 +27,19 @@ const appReducer = (state = initialState, action) => {
             };
         case LOGOUT_SUCCESS:
             return {
-                ...state,
                 isLogged: false,
                 userID: null,
                 userTOKEN: null,
                 userGroupID: null,
                 nickName: null,
             };
+        case CREATEGROUP_FAILURE:
+            return {
+                ...state,
+                isLogged: true,
+                failedMessage: action.payload.data.message,
+                isCreated: false,
+            }
         case CREATEGROUP_SUCCESS:
             return {
                 ...state,
@@ -56,7 +51,20 @@ const appReducer = (state = initialState, action) => {
                 groupTitle: action.payload.data.name,
                 groupDescription: action.payload.data.description,
                 groupTag: action.payload.data.groupTag,
-                isCreatedGroup: action.payload.data.isSuccess,
+                isCreated: true,
+                isExit: false,
+                failedMessage: null,
+            }
+        case EXITGROUP_SUCCESS:
+            return {
+                ...state,
+                isLogged: false,
+                nickName: action.payload.data.login,
+                userGroupID: null,
+                userID: state.payload.data.id,
+                userTOKEN: state.payload.data.currentTokenId,
+                isCreatedGroup: null,
+                isExit: true,
             }
         case REGISTER_FAILURE:
             return {

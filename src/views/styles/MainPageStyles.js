@@ -12,7 +12,7 @@ text-align:center;
 animation: mainAnim 1s 1s linear both;
 margin-top: 150px;
 & span {
-    color:orange;
+    color:${({ theme }) => theme.colors.primary};
 }
 `;
 
@@ -33,22 +33,22 @@ animation: mainAnim 1s 1.5s linear both;
 }
 `;
 export const StyledNoGroupHeading = styled(Heading)`
-font-size: 4rem;
+font-size: ${({ theme }) => theme.fontSize.xxl};
 display:flex;
 flex-direction: column;
 text-align:center;
 @media(max-width: 660px) {
-    font-size:3rem;
+    font-size:${({ theme }) => theme.fontSize.xl};
 }
 & span {
-    font-size: 1.8rem;
+    font-size: ${({ theme }) => theme.fontSize.m};
     font-weight: 400;
     margin-top: 15px;
-    color:orange;
+    color:${({ theme }) => theme.colors.primary};
 }
 `;
 export const StyledNoGroupParagraph = styled(Paragraph)`
-font-size: 2.2rem;
+    font-size: ${({ theme }) => theme.fontSize.m};
 `;
 export const StyledNoGroupButtonsWrapper = styled.div`
 display: flex;
@@ -73,10 +73,9 @@ align-items:center;
 justify-content:center;
 color:black;
 text-decoration:none;
-background-color: ${({ info }) => info ? "black" : "#FBC14D"};
-color: ${({ info }) => info ? "white" : "black"};
-width: ${({ info }) => info ? "200px" : '220px'};
-font-size: 1.5rem;
+z-index:1;
+position:relative;
+font-size: ${({ theme }) => theme.fontSize.s};
 @media(max-height: 720px) {
     display:${({ info }) => info ? 'flex' : 'none'};
 }
@@ -94,9 +93,9 @@ bottom: 25px;
 }
 `;
 export const StyledNoGroupInfoHeading = styled(Heading)`
-border-bottom: 5px solid orange;
+border-bottom: 5px solid ${({ theme }) => theme.colors.primary};
 margin-top: 200px;
-font-size: 2.6rem;
+font-size: ${({ theme }) => theme.fontSize.l};
 @media(max-width: 600px) {
     font-size: 2rem;
     text-align:center;

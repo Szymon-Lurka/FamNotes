@@ -4,10 +4,10 @@ import {
 } from '../../../theme/AccountPanelTemplateStyles';
 import Input from '../../atoms/Input/Input';
 
-const BadLogin = ({ handleChange, handleBlur, value, infoMessage }) => (
+const BadLogin = ({ handleChange, handleBlur, value, infoMessage = 0 }) => (
     <>
         {/* If password is incorrect return normal login input  */}
-        {infoMessage === '' || infoMessage.length === 68 ? (
+        {infoMessage === '' || infoMessage === 0 || infoMessage.length === 68 ? (
             <Input
                 placeholder="LOGIN"
                 type="text"

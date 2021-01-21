@@ -37,11 +37,6 @@ AccountPanelTemplate.propTypes = {
     isLogged: PropTypes.bool,
     children: PropTypes.func.isRequired,
 };
-AccountPanelTemplate.defaultProps = {
-    register: null,
-    isLogged: false,
-    invalidLoginData: false,
-};
 
 const mapStateToProps = (state) => ({
     isLogged: state.isLogged,

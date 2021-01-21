@@ -14,7 +14,12 @@ import {
     StyledLink,
     StyledIcon,
 } from './NavigationStyles'
+import { Redirect } from 'react-router';
 const Navigation = ({ logout }) => {
+    const handleLogoutClick = () => {
+        logout()
+        return <Redirect to="/login" />
+    }
     return (
         <StyledNav>
             <StyledUl>
@@ -61,7 +66,7 @@ const Navigation = ({ logout }) => {
                     </StyledLink>
                 </StyledLi>
                 <StyledLi>
-                    <StyledLink to="/login" onClick={() => logout()}>
+                    <StyledLink to="/login" onClick={handleLogoutClick}>
                         <div className="hint">
                             Wyloguj się
                             </div>

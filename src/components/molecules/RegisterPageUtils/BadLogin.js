@@ -3,7 +3,7 @@ import {
     StyledWarningInput,
 } from '../../../theme/AccountPanelTemplateStyles';
 
-const BadLogin = ({ handleChange, handleBlur, value, infoMessage }) => (
+const BadLogin = ({ handleChange, handleBlur, value, infoMessage = 0 }) => (
     <>
         {/* If login already exist in DATABASE or is incorrect  */}
         {infoMessage.length === 29 || infoMessage.length === 71 ? (

@@ -56,7 +56,7 @@ opacity: ${({ isVisible }) => isVisible ? "0" : "1"};
     width: 60%;
 }
 @media(max-width:1310px) {
-    font-size: 1.3rem;
+    font-size: ${({ theme }) => theme.fontSize.xs};
 }
  `;
 export const StyledHeadingInfo = styled(Heading)`
@@ -74,11 +74,12 @@ color: black;
 margin-top: 25px;
 text-decoration:none;
 cursor:pointer;
+
 @media(max-width: 470px) {
-    font-size: 1.6rem;
+    font-size: ${({ theme }) => theme.fontSize.s};
 }
 & span {
-    background-color:#FAB800;
+    background-color: ${({ theme }) => theme.colors.primary};
     padding: 8px;
     border-radius: 35px;
     transition:.3s;
@@ -95,6 +96,6 @@ export const StyledHeading = styled(Heading)`
 }
 @media(max-width:724px) {
     width: 80%;
-    font-size: 1.8rem;
+    font-size: ${({ theme }) => theme.fontSize.s};
 }
 `;

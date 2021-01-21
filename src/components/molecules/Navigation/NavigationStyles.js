@@ -11,7 +11,7 @@ right: 0;
 display:flex;
 justify-content:center;
 align-items:center;
-background-color:orange;
+background-color:${({ theme }) => theme.colors.primary};
 z-index:9999;
 `;
 export const StyledUl = styled.ul`
@@ -59,7 +59,7 @@ color:white;
     transition: .6s;
 }
 &.active img {
-    background-color:white !important;
+    background-color:white;
 }
 `;
 export const StyledIcon = styled.img`

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MainPagesTemplate from '../components/templates/MainPagesTemplate';
 import { connect } from 'react-redux';
 import { exitGroup, logout } from '../action';
@@ -11,15 +11,28 @@ import {
     StyledPanelWrapper,
     StyledPanelOptionsWrapper,
 } from './styles/SettingsStyles';
+import { Redirect } from 'react-router';
+import store from '../store/index';
 
 const Settings = ({ exitGroup }) => {
+    const [isChanged, setIsChanged] = useState(false);
     let local = JSON.parse(localStorage.getItem('state'));
+    let state = store.getState();
+    let token = store.getState().userTOKEN;
     const handleClick = () => {
         exitGroup();
+        state.groupDescription = null;
+        state.groupTag = null;
+        state.groupTitle = null;
+        state.userGroupID = null;
+        state.userTOKEN = token;
+        state.isExitedFromGroup = true;
+        setIsChanged(true);
     }
     return (
         <MainPagesTemplate>
             <StyledWrapper>
+                {isChanged ? <Redirect to="/" /> : null}
                 <StyledHeading as="h2">Ustawienia konta</StyledHeading>
                 <StyledParagraph>Jesteś zalogowany jako <span>{local.nickName[0].toUpperCase() + local.nickName.substring(1)}</span>.</StyledParagraph>
                 {local.userGroupID !== null ? (

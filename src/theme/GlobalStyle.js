@@ -19,6 +19,21 @@ html {
     0%{opacity:0}
     100%{opacity:100}
 }
+@keyframes groupCreatedAnim {
+    0%{transform:scale(1)}
+    100%{transform:scale(20)}
+}
+@keyframes groupCreatedInfoAnim {
+    0%{opacity:0}
+    100%{opacity:1}
+}
+@keyframes myRoomFade {
+    0%{transform:translateY(-100%)}
+    100%{transform:translateY(0%)}
+}
+@keyframes settingsFade {
+    100%{transform:translateX(0%)}
+}
 `;
 
 export default GlobalStyle;
