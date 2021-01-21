@@ -12,7 +12,9 @@ export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 export const CREATEGROUP_REQUEST = "CREATEGROUP_REQUEST";
 export const CREATEGROUP_SUCCESS = "CREATEGROUP_SUCCESS";
 export const CREATEGROUP_FAILURE = "CREATEGROUP_FAILURE";
-
+export const EXITGROUP_REQUEST = 'EXITGROUP_REQUEST';
+export const EXITGROUP_SUCCESS = 'EXITGROUP_SUCCESS';
+export const EXITGROUP_FAILURE = 'EXITGROUP_FAILURE';
 
 export const authenticate = (login, password) => dispatch => {
     dispatch({ type: LOGIN_REQUEST });
@@ -75,5 +77,20 @@ export const createGroup = (name, description, tag) => (dispatch, getState) => {
         })
         .catch(err => {
             dispatch({ type: CREATEGROUP_FAILURE });
+        });
+};
+
+export const exitGroup = () => (dispatch, getState) => {
+    dispatch({ type: EXITGROUP_REQUEST });
+    return axios.post('http://localhost:9000/group/exit', {
+        userID: getState().userID,
+    })
+        .then(payload => {
+            console.log(payload);
+            console.log(getState().userGroupID);
+            dispatch({ type: EXITGROUP_SUCCESS, payload });
+        })
+        .catch(err => {
+            dispatch({ type: EXITGROUP_FAILURE });
         });
 };

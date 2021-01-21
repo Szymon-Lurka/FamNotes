@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
 const MainPagesTemplate = ({ children }) => {
-    const local = localStorage.getItem('state');
-    if (!JSON.parse(local).isLogged) {
+    const local = JSON.parse(localStorage.getItem('state'))
+    if (!local.isLogged) {
         return <Redirect to="/login" />
     }
     return (
@@ -17,7 +17,7 @@ const MainPagesTemplate = ({ children }) => {
 }
 
 MainPagesTemplate.propTypes = {
-    children: PropTypes.element.isRequired,
+    children: PropTypes.element,
 };
 
 export default MainPagesTemplate;

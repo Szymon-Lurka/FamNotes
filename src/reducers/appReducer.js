@@ -1,9 +1,19 @@
-import { CREATEGROUP_SUCCESS, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAILURE, REGISTER_SUCCESS } from '../action/index';
-
+import { CREATEGROUP_SUCCESS, EXITGROUP_SUCCESS, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAILURE, REGISTER_SUCCESS } from '../action/index';
 const initialState = {};
 
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
+        case EXITGROUP_SUCCESS:
+            return {
+                ...state,
+                isLogged: false,
+                nickName: action.payload.data.login,
+                userGroupID: null,
+                userID: state.payload.data.id,
+                userTOKEN: state.payload.data.currentTokenId,
+                isCreatedGroup: null,
+                isExit: true,
+            }
         case LOGIN_SUCCESS:
             return {
                 ...state,
@@ -16,6 +26,8 @@ const appReducer = (state = initialState, action) => {
                 groupDescription: action.payload.data.userData.groupDescription,
                 groupTag: action.payload.data.userData.groupTag,
                 loginFailedMessage: null,
+                isCreatedGroup: null,
+                isExit: false,
             };
         case LOGIN_FAILURE:
             return {
@@ -60,20 +72,7 @@ const appReducer = (state = initialState, action) => {
                 registerMessage: 'Pomyślnie zarejestrowano!',
             };
         default:
-            return {
-                ...state,
-                isLogged: false,
-                userTOKEN: null,
-                userGroupID: null,
-                groupTitle: '',
-                groupDescription: '',
-                nickName: null,
-                isRegisterSuccess: null,
-                invalidLoginData: false,
-                registerMessage: '',
-                isCreatedGroup: false,
-                groupTag: '',
-            };
+            return state;
     };
 };
 

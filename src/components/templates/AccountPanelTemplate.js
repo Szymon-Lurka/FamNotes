@@ -9,9 +9,9 @@ import { authenticate, userRegister } from '../../action/index';
 
 
 const AccountPanelTemplate = ({ register, authenticate, userRegister, isLogged, children, state }) => {
-    const local = localStorage.getItem('state');
+    const local = JSON.parse(localStorage.getItem('state'))
     if (local) {
-        if (JSON.parse(local).isLogged === true) {
+        if (local.isLogged && !local.isExit) {
             return <Redirect to="/" />
         }
     }

@@ -8,14 +8,13 @@ import Heading from '../components/atoms/Heading/Heading';
 import Button from '../components/atoms/Button/Button';
 import AccountPanelTemplate from '../components/templates/AccountPanelTemplate';
 import {
-    StyledLabel,
-    StyledWarningInput,
     StyledWrapper,
     StyledForm,
     StyledSmallButton,
     StyledInfoLink,
     StyledHeading,
 } from '../theme/AccountPanelTemplateStyles';
+import BadLogin from '../components/molecules/LoginPageUtils/BadLogin';
 
 const LoginPage = ({ loginFailedMessage }) => {
     return (
@@ -27,28 +26,12 @@ const LoginPage = ({ loginFailedMessage }) => {
                             <Heading as="h2">FAMNOTES</Heading>
                             <StyledHeading>Twoja nowa ulubiona aplikacja do zarządzania obowiązkami w domu!</StyledHeading>
                             <StyledForm>
-                                {loginFailedMessage ? (
-                                    <StyledLabel>
-                                        {loginFailedMessage}
-                                        <StyledWarningInput
-                                            placeholder="LOGIN"
-                                            type="text"
-                                            name="login"
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            value={values.login}
-                                        />
-                                    </StyledLabel>
-                                ) : (
-                                        <Input
-                                            placeholder="LOGIN"
-                                            type="text"
-                                            name="login"
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            value={values.login}
-                                        />
-                                    )}
+                                <BadLogin
+                                    loginFailedMessage={loginFailedMessage}
+                                    handleChange={handleChange}
+                                    handleBlur={handleBlur}
+                                    value={values.login}
+                                />
                                 <Input
                                     placeholder="HASŁO"
                                     type="password"

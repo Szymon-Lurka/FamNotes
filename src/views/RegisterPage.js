@@ -4,12 +4,9 @@ import { Form } from 'formik';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Button from '../components/atoms/Button/Button';
-import Input from '../components/atoms/Input/Input';
 import Heading from '../components/atoms/Heading/Heading';
 import AccountPanelTemplate from '../components/templates/AccountPanelTemplate';
 import {
-    StyledLabel,
-    StyledWarningInput,
     StyledWrapper,
     StyledForm,
     StyledSmallButton,
@@ -18,6 +15,8 @@ import {
     StyledRegisterSuccessButton,
     StyledHeadingInfo,
 } from '../theme/AccountPanelTemplateStyles';
+import BadLogin from '../components/molecules/RegisterPageUtils/BadLogin';
+import BadPassword from '../components/molecules/RegisterPageUtils/BadPassword';
 
 const RegisterPage = ({ isRegisterSuccess, registerMessage }) => {
     const [infoMessage, setInfoMessage] = useState('');
@@ -45,51 +44,18 @@ const RegisterPage = ({ isRegisterSuccess, registerMessage }) => {
                                 </StyledForm>
                             ) : (
                                     <StyledForm>
-                                        {infoMessage.length === 29 || infoMessage.length === 71 ? (
-                                            <StyledLabel>
-                                                {infoMessage}
-                                                <StyledWarningInput
-                                                    placeholder="LOGIN"
-                                                    type="text"
-                                                    name="login"
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    value={values.login}
-                                                />
-                                            </StyledLabel>
-                                        ) : null}
-                                        {infoMessage === '' || infoMessage.length === 68 ? (
-                                            <Input
-                                                placeholder="LOGIN"
-                                                type="text"
-                                                name="login"
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                value={values.login}
-                                            />
-                                        ) : null}
-                                        {infoMessage.length === 68 ? (
-                                            <StyledLabel>
-                                                {infoMessage}
-                                                <StyledWarningInput
-                                                    placeholder="HASŁO"
-                                                    type="password"
-                                                    name="password"
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    value={values.password}
-                                                />
-                                            </StyledLabel>
-                                        ) : (
-                                                <Input
-                                                    placeholder="HASŁO"
-                                                    type="password"
-                                                    name="password"
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    value={values.password}
-                                                />
-                                            )}
+                                        <BadLogin
+                                            handleChange={handleChange}
+                                            handleBlur={handleBlur}
+                                            value={values.login}
+                                            infoMessage={infoMessage}
+                                        />
+                                        <BadPassword
+                                            handleChange={handleChange}
+                                            handleBlur={handleBlur}
+                                            infoMessage={infoMessage}
+                                            value={{ login: values.login, password: values.password }}
+                                        />
                                         <Button
                                             type="submit"
                                         >Zarejestruj się!

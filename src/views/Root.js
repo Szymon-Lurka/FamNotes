@@ -12,9 +12,8 @@ import Settings from './Settings';
 import AboutApp from './AboutApp';
 import { Provider } from 'react-redux';
 import store from '../store/index';
-import { connect } from 'react-redux';
 
-function Root({ isLogged }) {
+function Root() {
   return (
     <Provider store={store}>
       <Router>
@@ -35,8 +34,4 @@ function Root({ isLogged }) {
   );
 }
 
-const mapStateToProps = (isLogged = null) => ({
-  isLogged,
-})
-
-export default connect(mapStateToProps)(Root);
+export default Root;
