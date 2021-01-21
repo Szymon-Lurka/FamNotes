@@ -20,6 +20,4 @@ MainPagesTemplate.propTypes = {
     children: PropTypes.element.isRequired,
 };
 
-// const mapStateToProps = () => { }
-
 export default MainPagesTemplate;

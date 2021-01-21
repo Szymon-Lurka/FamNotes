@@ -1,6 +1,9 @@
 import React from 'react';
 import MainPagesTemplate from '../components/templates/MainPagesTemplate';
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
     StyledWrapper,
     StyledWelcomeHeading,
@@ -11,16 +14,20 @@ import {
     StyledNoGroupButton,
     StyledNoGroupInfoHeading,
     StyledNoGroupInfoWrapper,
+    StyledHeading,
+    StyledParagraph,
+    StyledButton,
 } from './styles/MainPageStyles';
-import { Link } from 'react-router-dom';
-import Heading from '../components/atoms/Heading/Heading';
 
-const MainPage = () => {
-    const local = localStorage.getItem('state');
-    const isGroup = JSON.parse(local).userGroupID;
-    if (!JSON.parse(local).isLogged) {
+const MainPage = ({ isLogged }) => {
+    const local = JSON.parse(localStorage.getItem('state'));
+    if (!isLogged) {
         return <Redirect to="/login" />
-    }
+    };
+    const isGroup = local.userGroupID;
+    if (local.isCreatedGroup) {
+        return <Redirect to="/room/create" />
+    };
     const { nickName } = JSON.parse(localStorage.getItem('state'));
 
     return (
@@ -29,7 +36,13 @@ const MainPage = () => {
                 <StyledWrapper>
                     <StyledWelcomeHeading>Witaj <span>{nickName[0].toUpperCase() + nickName.substring(1)}</span>! Co słychać?</StyledWelcomeHeading>
                     {isGroup !== null ? (
-                        <Heading>Przejdź do swoich grup!</Heading>
+                        <>
+                            <StyledHeading as="h2">Jesteś już członkiem jednej grupy!</StyledHeading>
+                            <StyledParagraph>Niestety - na aktualnym etapie tworzenia aplikacji możesz posiadać tylko jedną grupę.</StyledParagraph>
+                            <StyledButton
+                                as={Link} to="/room"
+                            >Przejdź do swojej grupy</StyledButton>
+                        </>
                     ) : (
                             <StyledNoGroupWrapper>
                                 <StyledNoGroupHeading>
@@ -72,4 +85,13 @@ const MainPage = () => {
     );
 }
 
-export default MainPage;
+const mapStateToProps = (state) => ({
+    isLogged: state.isLogged
+});
+
+MainPage.propTypes = {
+    isLogged: PropTypes.bool,
+};
+
+
+export default connect(mapStateToProps)(MainPage);

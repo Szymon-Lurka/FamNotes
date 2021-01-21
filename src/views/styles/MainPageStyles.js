@@ -102,3 +102,22 @@ font-size: 2.6rem;
     text-align:center;
 }
 `;
+
+export const StyledHeading = styled(Heading)`
+text-align:center;
+animation: mainAnim 1s 2s linear both;
+`;
+export const StyledParagraph = styled(Paragraph)`
+text-align:center;
+animation: mainAnim 1s 2s linear both;
+`;
+export const StyledButton = styled(Button)`
+display:flex;
+justify-content:center;
+align-items:center;
+width: 300px;
+color:black;
+text-decoration:none;
+margin: 0 auto;
+animation: mainAnim 1s 2s linear both;
+`;
