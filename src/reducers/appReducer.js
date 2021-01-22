@@ -1,4 +1,4 @@
-import { CREATEGROUP_SUCCESS, CREATEGROUP_FAILURE, EXITGROUP_SUCCESS, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAILURE, REGISTER_SUCCESS, JOINGROUP_SUCCESS, JOINGROUP_FAILURE } from '../action/index';
+import { CREATEGROUP_SUCCESS, CREATEGROUP_FAILURE, EXITGROUP_SUCCESS, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAILURE, REGISTER_SUCCESS, JOINGROUP_SUCCESS, JOINGROUP_FAILURE, GETNOTES_SUCCESS, DELETENOTE_SUCCESS, ADDNOTE_SUCCESS } from '../action/index';
 const initialState = {};
 
 const appReducer = (state = initialState, action) => {
@@ -56,6 +56,16 @@ const appReducer = (state = initialState, action) => {
                 isExit: false,
                 failedMessage: null,
             }
+        case ADDNOTE_SUCCESS:
+            return {
+                ...state,
+                notes: action.payload.data,
+            }
+        case GETNOTES_SUCCESS:
+            return {
+                ...state,
+                notes: action.payload.data,
+            }
         case EXITGROUP_SUCCESS:
             return {
                 ...state,
@@ -67,6 +77,12 @@ const appReducer = (state = initialState, action) => {
                 isCreatedGroup: null,
                 isExit: true,
                 isJoined: false,
+                notes: [],
+            }
+        case DELETENOTE_SUCCESS:
+            return {
+                ...state,
+                notes: state.notes.filter(note => note.id !== action.payload.data.noteId.noteId),
             }
         case JOINGROUP_SUCCESS:
             return {

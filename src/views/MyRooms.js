@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MainPagesTemplate from '../components/templates/MainPagesTemplate';
 import styled from 'styled-components';
+import HasGroup from '../components/organisms/MyRoomsUtils/HasGroup';
+import HasNoGroup from '../components/organisms/MyRoomsUtils/HasNoGroup';
 
 const StyledWrapper = styled.div`
 margin-top:100px;
-transform:translateY(-100%);
 position:absolute;
-opacity: 1;
-animation: fromUpToDown 0.35s ease-in-out both;
+animation: opacityAnim 0.55s ease-in-out both;
+min-height: 100vh;
 `;
 const StyledBackground = styled.div`
 width:100vw;
@@ -18,14 +19,19 @@ z-index:1;
 `;
 
 const MyRooms = () => {
+    // const [isBodyClicked, setIsBodyClicked] = useState(false);
     const local = JSON.parse(localStorage.getItem('state'));
     return (
         <MainPagesTemplate>
             <StyledBackground />
             <StyledWrapper>
-                <h2>Nazwa grupy: {local.groupTitle}</h2>
-                <h2>Opis grupy: {local.groupDescription}</h2>
-                <h2>Tag grupy: {local.groupTag}</h2>
+                {local.groupTag !== null ?
+                    <HasGroup
+                        local={local}
+                    />
+                    :
+                    <HasNoGroup />
+                }
             </StyledWrapper>
         </MainPagesTemplate>
     );

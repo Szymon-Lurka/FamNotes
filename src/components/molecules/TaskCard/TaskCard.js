@@ -1,43 +1,44 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { deleteNote } from '../../../action/index';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
-import Heading from '../../atoms/Heading/Heading';
-import Button from '../../atoms/Button/Button';
+import {
+    StyledWrapper,
+    StyledInnerWrapper,
+    StyledHeading,
+    StyledDateInfo,
+    StyledButton
+} from './TaskCardStyles';
 
-const StyledWrapper = styled.div`
-min-height: 350px;
-box-shadow: 0 10px 30px -10px hsla(0,0%,0%,0.1);
-border-radius: 15px;
-overflow:hidden;
-display:grid;
-grid-template-rows: 0.25fr 1fr;
-`;
-const StyledInnerWrapper = styled.div`
-position:relative;
-padding: 17px 30px 10px;
-background-color: royalblue;
-`;
-const StyledDateInfo = styled(Paragraph)`
-margin: 0 0 10px;
-font-weight: ${({ theme }) => theme.bold};
-font-size: ${({ theme }) => theme.fontSize.xs};
-`;
-const StyledHeading = styled(Heading)`
-margin:10px 0 0;
-`;
-const TaskCard = () => {
+const TaskCard = ({ title, date, content, author, id, deleteNote }) => {
+    const [isDeleted, setIsDeleted] = useState(false);
+    const handleClick = id => {
+        setIsDeleted(true);
+        deleteNote(id);
+    }
     return (
-        <StyledWrapper>
-            <StyledInnerWrapper>
-                <StyledHeading as="h2">Tytuł</StyledHeading>
-                <StyledDateInfo>2 godziny temu</StyledDateInfo>
-            </StyledInnerWrapper>
-            <StyledInnerWrapper>
-                <Paragraph>Treść zadania</Paragraph>
-                <Button>Opcje</Button>
-            </StyledInnerWrapper>
-        </StyledWrapper>
+        <>
+            {isDeleted ? null : (
+                <StyledWrapper>
+                    <StyledInnerWrapper first="true">
+                        <StyledHeading main="true" as="h2">{title}</StyledHeading>
+                        <StyledDateInfo main="true">{date}</StyledDateInfo>
+                    </StyledInnerWrapper>
+                    <StyledInnerWrapper>
+                        <Paragraph>Dodane przez: {author}</Paragraph>
+                        <StyledHeading as="h2">{content}</StyledHeading>
+                        <StyledButton
+                            onClick={() => handleClick(id)}
+                        >Usuń zadanie</StyledButton>
+                    </StyledInnerWrapper>
+                </StyledWrapper>
+            )}
+        </>
     );
 }
 
-export default TaskCard;
+const mapDispatchToProps = dispatch => ({
+    deleteNote: (id) => dispatch(deleteNote(id)),
+});
+
+export default connect(null, mapDispatchToProps)(TaskCard);

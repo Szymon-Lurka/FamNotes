@@ -17,6 +17,9 @@ import store from '../store/index';
 const Settings = ({ exitGroup }) => {
     const [isChanged, setIsChanged] = useState(false);
     let local = JSON.parse(localStorage.getItem('state'));
+    if (!local.isLogged) {
+        return <Redirect to="/login" />
+    }
     let state = store.getState();
     let token = store.getState().userTOKEN;
     const handleClick = () => {

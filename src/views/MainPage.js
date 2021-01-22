@@ -9,11 +9,17 @@ import {
 import HasGroup from '../components/organisms/MainPageUtils/HasGroup';
 import HasNoGroup from '../components/organisms/MainPageUtils/HasNoGroup';
 import store from '../store/index';
+import { Redirect } from 'react-router';
 
 const MainPage = () => {
     const local = JSON.parse(localStorage.getItem('state'));
     let state = store.getState();
-    const isGroup = local.userGroupID;
+    let isGroup;
+    if (local !== null) {
+        isGroup = local.userGroupID;
+    } else {
+        return <Redirect to="/login" />
+    }
     const { nickName } = JSON.parse(localStorage.getItem('state'));
 
     return (
