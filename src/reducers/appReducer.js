@@ -1,4 +1,4 @@
-import { CREATEGROUP_SUCCESS, CREATEGROUP_FAILURE, EXITGROUP_SUCCESS, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAILURE, REGISTER_SUCCESS } from '../action/index';
+import { CREATEGROUP_SUCCESS, CREATEGROUP_FAILURE, EXITGROUP_SUCCESS, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAILURE, REGISTER_SUCCESS, JOINGROUP_SUCCESS, JOINGROUP_FAILURE } from '../action/index';
 const initialState = {};
 
 const appReducer = (state = initialState, action) => {
@@ -17,6 +17,7 @@ const appReducer = (state = initialState, action) => {
                 loginFailedMessage: null,
                 isCreatedGroup: null,
                 isExit: false,
+                isJoined: false,
             };
         case LOGIN_FAILURE:
             return {
@@ -65,6 +66,22 @@ const appReducer = (state = initialState, action) => {
                 userTOKEN: state.payload.data.currentTokenId,
                 isCreatedGroup: null,
                 isExit: true,
+                isJoined: false,
+            }
+        case JOINGROUP_SUCCESS:
+            return {
+                ...state,
+                userGroupID: action.payload.data.group.id,
+                groupTitle: action.payload.data.group.name,
+                groupTag: action.payload.data.group.tag,
+                isJoined: action.payload.data.isSuccess,
+                joinMessage: action.payload.data.message,
+            }
+        case JOINGROUP_FAILURE:
+            return {
+                ...state,
+                isJoined: action.payload.data.isSuccess,
+                joinMessage: action.payload.data.message,
             }
         case REGISTER_FAILURE:
             return {

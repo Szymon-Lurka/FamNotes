@@ -6,7 +6,7 @@ export const StyledWrapper = styled.div`
 margin-top: 150px;
 text-align:center;
 transform:translateX(-100%);
-animation: settingsFade 0.35s ease-in-out both;
+animation: fromLeftToRight 0.35s ease-in-out both;
 `;
 export const StyledHeading = styled(Heading)`
 

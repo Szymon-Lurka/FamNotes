@@ -7,7 +7,7 @@ margin-top:100px;
 transform:translateY(-100%);
 position:absolute;
 opacity: 1;
-animation: myRoomFade 0.35s ease-in-out both;
+animation: fromUpToDown 0.35s ease-in-out both;
 `;
 const StyledBackground = styled.div`
 width:100vw;

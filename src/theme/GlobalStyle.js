@@ -15,9 +15,9 @@ body {
 html {
     font-size: 62.5%;
 }
-@keyframes mainAnim {
+@keyframes opacityAnim {
     0%{opacity:0}
-    100%{opacity:100}
+    100%{opacity:1}
 }
 @keyframes groupCreatedAnim {
     0%{transform:scale(1)}
@@ -27,11 +27,11 @@ html {
     0%{opacity:0}
     100%{opacity:1}
 }
-@keyframes myRoomFade {
+@keyframes fromUpToDown {
     0%{transform:translateY(-100%)}
     100%{transform:translateY(0%)}
 }
-@keyframes settingsFade {
+@keyframes fromLeftToRight {
     100%{transform:translateX(0%)}
 }
 `;

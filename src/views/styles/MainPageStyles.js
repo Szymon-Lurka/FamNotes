@@ -9,7 +9,7 @@ margin-top: 100px;
 
 export const StyledWelcomeHeading = styled(Heading)`
 text-align:center;
-animation: mainAnim 1s 1s linear both;
+animation: opacityAnim 1s 1s linear both;
 margin-top: 150px;
 & span {
     color:${({ theme }) => theme.colors.primary};
@@ -24,7 +24,7 @@ flex-direction: column;
 align-items:center;
 justify-content:center;
 margin-top: 100px;
-animation: mainAnim 1s 1.5s linear both;
+animation: opacityAnim 1s 1.5s linear both;
 @media(max-width: 660px) {
     margin-top: 50px;
 }
@@ -104,11 +104,11 @@ font-size: ${({ theme }) => theme.fontSize.l};
 
 export const StyledHeading = styled(Heading)`
 text-align:center;
-animation: mainAnim 1s 2s linear both;
+animation: opacityAnim 1s 2s linear both;
 `;
 export const StyledParagraph = styled(Paragraph)`
 text-align:center;
-animation: mainAnim 1s 2s linear both;
+animation: opacityAnim 1s 2s linear both;
 `;
 export const StyledButton = styled(Button)`
 display:flex;
@@ -118,5 +118,5 @@ width: 300px;
 color:black;
 text-decoration:none;
 margin: 0 auto;
-animation: mainAnim 1s 2s linear both;
+animation: opacityAnim 1s 2s linear both;
 `;

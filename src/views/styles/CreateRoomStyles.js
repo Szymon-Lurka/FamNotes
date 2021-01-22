@@ -15,17 +15,17 @@ text-align:center;
 justify-self:flex-start;
 margin-top: 0;
 color: ${({ main, theme }) => main ? theme.colors.secondary : "black"};
-animation: mainAnim 1s linear both;
+animation: opacityAnim 1s linear both;
 @media(max-width:750px) {
     font-size:${({ theme }) => theme.fontSize.m};
     width: 80%;
     margin: 0 auto 15px;
 }
 ${({ second }) => second && css`
-animation: mainAnim 1s 4s linear both;
+animation: opacityAnim 1s 4s linear both;
 `}
 ${({ third }) => third && css`
-animation: mainAnim 1s 8s linear both;
+animation: opacityAnim 1s 8s linear both;
 `}
 & span {
     color:${({ theme }) => theme.colors.secondary};
@@ -35,12 +35,12 @@ animation: mainAnim 1s 8s linear both;
 
 export const StyledParagraph = styled(Paragraph)`
 text-align:center;
-animation: mainAnim 1s linear both;
+animation: opacityAnim 1s linear both;
 ${({ second }) => second && css`
-animation: mainAnim 1s 4s linear both;
+animation: opacityAnim 1s 4s linear both;
 `}
 ${({ third }) => third && css`
-animation: mainAnim 1s 8s linear both;
+animation: opacityAnim 1s 8s linear both;
 `}
 @media(max-width:750px) {
     width: 80%;
@@ -52,12 +52,12 @@ animation: mainAnim 1s 8s linear both;
 export const StyledInput = styled(Input)`
 margin: 40px auto 62px;
 width: 400px;
-animation:${({ anim }) => anim ? "mainAnim 1s linear both" : null};
+animation:${({ anim }) => anim ? "opacityAnim 1s linear both" : null};
 @media(max-width:750px) {
     width:300px;
 }
 ${({ third }) => third && css`
-animation: mainAnim 1s 8s linear both;
+animation: opacityAnim 1s 8s linear both;
 `}
 `;
 
@@ -67,7 +67,8 @@ height: 100px;
 margin: 40px auto 62px;
 border-radius: 13px;
 width: 400px;
-animation: ${({ anim }) => !anim ? "mainAnim 1s 4s linear both" : null};
+resize:none;
+animation: ${({ anim }) => !anim ? "opacityAnim 1s 4s linear both" : null};
 @media(max-width:750px) {
     width:300px;
 }
@@ -76,7 +77,7 @@ animation: ${({ anim }) => !anim ? "mainAnim 1s 4s linear both" : null};
 
 export const StyledButton = styled(Button)`
 margin: 0 auto;
-animation: mainAnim 1s 10s linear both;
+animation: opacityAnim 1s 10s linear both;
 `;
 
 
@@ -95,7 +96,7 @@ width:300px;
 color: black;
 text-decoration:none;
 margin: 40px auto;
-animation: mainAnim 1s 2s linear both;
+animation: opacityAnim 1s 2s linear both;
 `;
 
 export const WarningLabel = styled.label`
@@ -118,6 +119,7 @@ height: 100px;
 margin: 40px auto 62px;
 border-radius: 13px;
 width: 400px;
+resize:none;
 @media(max-width:750px) {
     width:300px;
 }

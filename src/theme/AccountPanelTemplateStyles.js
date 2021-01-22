@@ -74,7 +74,6 @@ color: black;
 margin-top: 25px;
 text-decoration:none;
 cursor:pointer;
-
 @media(max-width: 470px) {
     font-size: ${({ theme }) => theme.fontSize.s};
 }
