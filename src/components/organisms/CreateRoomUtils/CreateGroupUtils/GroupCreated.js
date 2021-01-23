@@ -15,24 +15,14 @@ justify-content:center;
 align-items:center;
 position:relative;
 `;
-const StyledBackground = styled.div`
-width: 150px;
-height: 150px;
-border-radius: 50%;
-background-color:#DDDFFF;
-transform:scale(1);
-animation: groupCreatedAnim .3s linear both;
-`;
 const StyledHeadingsWrapper = styled.div`
 width: 50vw;
 height: 50vh;
-background-color:${({ theme }) => theme.colors.secondary};
+background-color:white;
 position:absolute;
-top:50%;
-left:50%;
 border-radius: 25px;
-transform:translate(-50%, -50%);
-animation: groupCreatedInfoAnim 1s .6s linear both;
+transform:translateX(-150%);
+animation: fromLeftToRight .4s .2s linear both;
 display:flex;
 flex-direction:column;
 align-items:center;
@@ -47,8 +37,6 @@ padding-top: 100px;
 }
 `;
 const StyledHeading = styled(Heading)`
-color:white;
-animation: groupCreatedInfoAnim 1s .9s linear both;
 text-align:center;
 @media(max-width: 1100px) {
     width:80%;
@@ -56,7 +44,6 @@ text-align:center;
 `;
 const StyledParagraph = styled(Paragraph)`
 animation: groupCreatedInfoAnim 1s 1.4s linear both;
-color:white;
 text-align:center;
 @media(max-width:1475px) {
     width: 80%;
@@ -64,7 +51,6 @@ text-align:center;
 `;
 const StyledButton = styled(Button)`
 width:270px;
-background-color:white;
 color:black;
 display: flex;
 justify-content:center;
@@ -75,7 +61,6 @@ animation: groupCreatedInfoAnim 1s 1.8s linear both;
 const GroupCreated = () => {
     return (
         <StyledWrapper>
-            <StyledBackground />
             <StyledHeadingsWrapper>
                 <StyledHeading as="h2">Super! Właśnie założyłeś grupę!</StyledHeading>
                 <StyledParagraph>Możesz teraz podzielić się TAG'iem grupy ze znajomymi i razem dodawać nowe zadania!</StyledParagraph>

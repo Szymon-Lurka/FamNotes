@@ -14,7 +14,7 @@ export const StyledMainHeading = styled(Heading)`
 text-align:center;
 justify-self:flex-start;
 margin-top: 0;
-color: ${({ main, theme }) => main ? theme.colors.secondary : "black"};
+color: ${({ main, theme }) => main ? theme.colors.primary : "black"};
 animation: opacityAnim 1s linear both;
 @media(max-width:750px) {
     font-size:${({ theme }) => theme.fontSize.m};
@@ -28,7 +28,7 @@ ${({ third }) => third && css`
 animation: opacityAnim 1s 8s linear both;
 `}
 & span {
-    color:${({ theme }) => theme.colors.secondary};
+    color:${({ theme }) => theme.colors.primary};
 }
 `;
 

@@ -1,18 +1,38 @@
 # FamNotes
 
-Application for distributing home tasks
+Application for distributing home tasks. U can register new account, login and join/create new group. After you joined/created the group u can add new tasks (visilbe for all users from this group)
 
-## If u want to run this application:
+## How to run this project
 
-The instruction will appear after the project is finished.
+- U gonna need backend, from [here](https://github.com/Szymon-Lurka/FamNotes-Backend)
 
-## Stack:
+### Project setup
 
-React Create App
-Styled Components
-React-router
-Formik
-PropTypes
-Redux
-Redux-Thunk
-Axios
+```
+npm install
+```
+
+### Run your project
+
+```
+npm run start
+```
+
+## Screenshots:
+
+#### Login Form View:
+
+![LoginForm](./screenshots/LOGIN.png?raw=true)
+
+## Technologies:
+
+- React Create App
+- Styled Components
+- React-router
+- Formik
+- PropTypes
+- Redux
+- Redux-Thunk
+- Axios
+
+### This was just project for learn some stuff and practice.

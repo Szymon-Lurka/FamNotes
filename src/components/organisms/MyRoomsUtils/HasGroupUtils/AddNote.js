@@ -6,7 +6,7 @@ import {
     StyledHeading,
     StyledInput,
     StyledTextArea,
-    StyledButton,
+    StyledSubmitButton,
 } from '../../../../views/styles/MyRoomsStyles';
 
 const AddNote = ({ handleChange, handleBlur, values }) => {
@@ -30,9 +30,9 @@ const AddNote = ({ handleChange, handleBlur, values }) => {
                     name="content"
                     value={values.content}
                 />
-                <StyledButton
+                <StyledSubmitButton
                     type="submit"
-                >Dodaj zadanie!</StyledButton>
+                >Dodaj zadanie!</StyledSubmitButton>
             </StyledModalWrapper>
         </Form>
     );

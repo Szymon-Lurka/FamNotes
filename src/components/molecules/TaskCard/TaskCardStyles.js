@@ -16,7 +16,7 @@ animation: opacityAnim .7s linear both;
 export const StyledInnerWrapper = styled.div`
 position:relative;
 padding: 17px 30px 10px;
-background-color: ${({ first, theme }) => first ? theme.colors.secondary : 'white'};
+background-color: ${({ first, theme }) => first ? theme.colors.primary : 'white'};
 `;
 export const StyledDateInfo = styled(Paragraph)`
 margin: 0 0 10px;
@@ -32,5 +32,5 @@ export const StyledButton = styled(Button)`
 position: absolute;
 bottom: 25px;
 left: 40px;
-background-color:${({ theme }) => theme.colors.secondary};
+color:white;
 `;
