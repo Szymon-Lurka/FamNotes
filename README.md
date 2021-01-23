@@ -24,6 +24,30 @@ npm run start
 
 ![LoginForm](./screenshots/LOGIN.png?raw=true)
 
+#### Main Page View:
+
+![MainPage](./screenshots/MainPage.png?raw=true)
+
+#### Creating Group View:
+
+![CreatingGroupView](./screenshots/creatinggroup.png?raw=true)
+
+#### Joining Group View:
+
+![JoiningGroupView](./screenshots/joininggroup.png?raw=true)
+
+#### Group View:
+
+![GroupView](./screenshots/GROUPVIEW.png?raw=true)
+
+#### Adding Task View:
+
+![AddTaskView](./screenshots/ADDINGNEWTASK.png?raw=true)
+
+#### Group with notes view:
+
+![GroupWithNotesView](./screenshots/NOTESVIEW.png?raw=true)
+
 ## Technologies:
 
 - React Create App
