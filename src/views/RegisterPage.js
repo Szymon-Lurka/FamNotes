@@ -29,13 +29,19 @@ const RegisterPage = ({ isRegisterSuccess, registerMessage }) => {
                 return (
                     <Form>
                         <StyledWrapper>
-                            <Heading as="h2">FAMNOTES</Heading>
+                            <Heading
+                                as="h2">
+                                FAMNOTES
+                            </Heading>
                             <StyledHeading>
                                 Twoja nowa ulubiona aplikacja do zarządzania obowiązkami w domu!
-                                </StyledHeading>
+                            </StyledHeading>
                             {isRegisterSuccess ? (
                                 <StyledForm>
-                                    <StyledHeadingInfo as="h2">{registerMessage}</StyledHeadingInfo>
+                                    <StyledHeadingInfo
+                                        as="h2">
+                                        {registerMessage}
+                                    </StyledHeadingInfo>
                                     <StyledRegisterSuccessButton
                                         as={Link}
                                         to="/login">
@@ -57,15 +63,15 @@ const RegisterPage = ({ isRegisterSuccess, registerMessage }) => {
                                             value={{ login: values.login, password: values.password }}
                                         />
                                         <Button
-                                            type="submit"
-                                        >Zarejestruj się!
-                                 </Button>
+                                            type="submit">
+                                            Zarejestruj się!
+                                        </Button>
                                         <StyledSmallButton
                                             secondary="true"
                                             as={Link}
                                             to="/login">
                                             Chcę się zalogować!
-                                 </StyledSmallButton>
+                                        </StyledSmallButton>
                                     </StyledForm>
                                 )}
                             <StyledInfoLink

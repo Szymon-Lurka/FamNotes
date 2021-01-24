@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import MainPagesTemplate from '../components/templates/MainPagesTemplate';
 import { connect } from 'react-redux';
-import { exitGroup, logout } from '../action';
+import { exitGroup } from '../action/group-actions';
 import PropTypes from 'prop-types';
 import Button from '../components/atoms/Button/Button';
 import {
@@ -14,7 +14,7 @@ import {
 import { Redirect } from 'react-router';
 import store from '../store/index';
 
-const Settings = ({ exitGroup }) => {
+const Settings = ({ exitGroup, userGroupID, isLogged, }) => {
     const [isChanged, setIsChanged] = useState(false);
     let local = JSON.parse(localStorage.getItem('state'));
     if (!local.isLogged) {
@@ -36,21 +36,34 @@ const Settings = ({ exitGroup }) => {
         <MainPagesTemplate>
             <StyledWrapper>
                 {isChanged ? <Redirect to="/" /> : null}
-                <StyledHeading as="h2">Ustawienia konta</StyledHeading>
-                <StyledParagraph>Jesteś zalogowany jako <span>{local.nickName[0].toUpperCase() + local.nickName.substring(1)}</span>.</StyledParagraph>
-                {local.userGroupID !== null ? (
+                <StyledHeading
+                    as="h2">
+                    Ustawienia konta
+                    </StyledHeading>
+                <StyledParagraph>
+                    Jesteś zalogowany jako <span>{local.nickName[0].toUpperCase() + local.nickName.substring(1)}</span>.
+                    </StyledParagraph>
+                {userGroupID !== null ? (
                     <>
                         <StyledPanelWrapper>
                             <StyledPanelOptionsWrapper>
-                                <StyledHeading as="h2">Opuść swoją grupę:</StyledHeading>
+                                <StyledHeading
+                                    as="h2">
+                                    Opuść swoją grupę:
+                                    </StyledHeading>
                                 <StyledParagraph>Jeśli zechcesz wrócić - zawsze możesz do niej dołączyć z powrotem!</StyledParagraph>
-                                <Button onClick={handleClick}>Opuść grupę!</Button>
+                                <Button
+                                    onClick={handleClick}>
+                                    Opuść grupę!</Button>
                             </StyledPanelOptionsWrapper>
                         </StyledPanelWrapper>
                     </>
                 ) : (
                         <>
-                            <StyledHeading as="h2">Aktualny stan aplikacji nie przewiduje ustawień użytkownika bez grupy</StyledHeading>
+                            <StyledHeading
+                                as="h2">
+                                Aktualny stan aplikacji nie przewiduje ustawień użytkownika bez grupy
+                                </StyledHeading>
                         </>
                     )}
             </StyledWrapper>
@@ -59,8 +72,7 @@ const Settings = ({ exitGroup }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    exitGroup: () => dispatch(exitGroup()),
-    logout: () => dispatch(logout()),
+    exitGroup: () => dispatch(exitGroup())
 })
 const mapStateToProps = (state) => ({
     isLogged: state.isLogged,
@@ -69,7 +81,6 @@ const mapStateToProps = (state) => ({
 
 Settings.propTypes = {
     exitGroup: PropTypes.func,
-    logout: PropTypes.func,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);

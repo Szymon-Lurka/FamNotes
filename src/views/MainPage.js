@@ -27,8 +27,10 @@ const MainPage = () => {
             {
                 local.isLogged ? (
                     <StyledWrapper>
-                        <StyledWelcomeHeading>Witaj <span>{nickName[0].toUpperCase() + nickName.substring(1)}
-                        </span>! Co słychać?</StyledWelcomeHeading>
+                        <StyledWelcomeHeading>
+                            Witaj <span>{nickName[0].toUpperCase() + nickName.substring(1)}</span>!
+                             Co słychać?
+                        </StyledWelcomeHeading>
                         {isGroup !== null && !state.isExitedFromGroup ? (
                             <HasGroup />
                         ) : <HasNoGroup />
@@ -41,7 +43,7 @@ const MainPage = () => {
 }
 
 const mapStateToProps = (state) => ({
-    isLogged: state.isLogged
+    isLogged: state.isLogged,
 });
 
 MainPage.propTypes = {

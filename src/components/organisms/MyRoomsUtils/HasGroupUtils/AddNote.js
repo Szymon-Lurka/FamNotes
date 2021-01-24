@@ -9,33 +9,31 @@ import {
     StyledSubmitButton,
 } from '../../../../views/styles/MyRoomsStyles';
 
-const AddNote = ({ handleChange, handleBlur, values }) => {
-    return (
-        <Form>
-            <StyledModalWrapper>
-                <StyledHeading>
-                    Dodaj zadanie:
+const AddNote = ({ handleChange, handleBlur, values }) => (
+    <Form>
+        <StyledModalWrapper>
+            <StyledHeading>
+                Dodaj zadanie:
                                 </StyledHeading>
-                <StyledInput
-                    placeholder="Nazwa zadania"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    name="title"
-                    value={values.title}
-                /> <StyledTextArea
-                    as="textarea"
-                    placeholder="Treść zadania"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    name="content"
-                    value={values.content}
-                />
-                <StyledSubmitButton
-                    type="submit"
-                >Dodaj zadanie!</StyledSubmitButton>
-            </StyledModalWrapper>
-        </Form>
-    );
-}
+            <StyledInput
+                placeholder="Nazwa zadania"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                name="title"
+                value={values.title}
+            /> <StyledTextArea
+                as="textarea"
+                placeholder="Treść zadania"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                name="content"
+                value={values.content}
+            />
+            <StyledSubmitButton
+                type="submit"
+            >Dodaj zadanie!</StyledSubmitButton>
+        </StyledModalWrapper>
+    </Form>
+);
 
 export default AddNote;

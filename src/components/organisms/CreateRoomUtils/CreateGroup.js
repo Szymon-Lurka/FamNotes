@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Formik } from 'formik';
-import { createGroup } from '../../../action';
+import { createGroup } from '../../../action/group-actions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
@@ -25,7 +25,7 @@ const CreateGroup = ({ children, createGroup }) => {
         if (state.isCreated === true) {
             setIsGroupCreated(state.isCreated);
         }
-    })
+    });
     return (
         <>
             {isGroupCreated ? (

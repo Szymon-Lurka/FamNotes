@@ -9,6 +9,7 @@ import {
     StyledDateInfo,
     StyledButton
 } from './TaskCardStyles';
+import PropTypes from 'prop-types';
 
 const TaskCard = ({ title, date, content, author, id, deleteNote }) => {
     const [isDeleted, setIsDeleted] = useState(false);
@@ -20,16 +21,30 @@ const TaskCard = ({ title, date, content, author, id, deleteNote }) => {
         <>
             {isDeleted ? null : (
                 <StyledWrapper>
-                    <StyledInnerWrapper first="true">
-                        <StyledHeading main="true" as="h2">{title}</StyledHeading>
-                        <StyledDateInfo main="true">{date}</StyledDateInfo>
+                    <StyledInnerWrapper
+                        first="true">
+                        <StyledHeading
+                            main="true"
+                            as="h2">
+                            {title}
+                        </StyledHeading>
+                        <StyledDateInfo
+                            main="true">
+                            {date}
+                        </StyledDateInfo>
                     </StyledInnerWrapper>
                     <StyledInnerWrapper>
-                        <Paragraph>Dodane przez: {author}</Paragraph>
-                        <StyledHeading as="h2">{content}</StyledHeading>
+                        <Paragraph>
+                            Dodane przez: {author}
+                        </Paragraph>
+                        <StyledHeading
+                            as="h2">
+                            {content}
+                        </StyledHeading>
                         <StyledButton
-                            onClick={() => handleClick(id)}
-                        >Usuń zadanie</StyledButton>
+                            onClick={() => handleClick(id)}>
+                            Usuń zadanie
+                                </StyledButton>
                     </StyledInnerWrapper>
                 </StyledWrapper>
             )}
@@ -40,5 +55,9 @@ const TaskCard = ({ title, date, content, author, id, deleteNote }) => {
 const mapDispatchToProps = dispatch => ({
     deleteNote: (id) => dispatch(deleteNote(id)),
 });
+
+TaskCard.propTypes = {
+    deleteNote: PropTypes.func,
+};
 
 export default connect(null, mapDispatchToProps)(TaskCard);

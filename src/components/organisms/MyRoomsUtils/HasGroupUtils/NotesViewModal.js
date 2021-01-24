@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import { addNote } from '../../../../action';
 import AddNote from './AddNote';
+import PropTypes from 'prop-types';
 
 import {
     StyledModal,
@@ -45,5 +46,11 @@ const NotesViewModal = ({ closeModal, isVisible, addNote }) => {
 const mapDispatchToProps = dispatch => ({
     addNote: (title, content) => dispatch(addNote(title, content))
 });
+
+NotesViewModal.propTypes = {
+    closeModal: PropTypes.func,
+    isVisible: PropTypes.bool,
+    addNote: PropTypes.func,
+};
 
 export default connect(null, mapDispatchToProps)(NotesViewModal);

@@ -16,53 +16,51 @@ import {
 } from '../theme/AccountPanelTemplateStyles';
 import BadLogin from '../components/molecules/LoginPageUtils/BadLogin';
 
-const LoginPage = ({ loginFailedMessage }) => {
-    return (
-        <AccountPanelTemplate>
-            {({ handleChange, handleBlur, values }) => {
-                return (
-                    <Form>
-                        <StyledWrapper>
-                            <Heading as="h2">FAMNOTES</Heading>
-                            <StyledHeading>Twoja nowa ulubiona aplikacja do zarządzania obowiązkami w domu!</StyledHeading>
-                            <StyledForm>
-                                <BadLogin
-                                    loginFailedMessage={loginFailedMessage}
-                                    handleChange={handleChange}
-                                    handleBlur={handleBlur}
-                                    value={values.login}
-                                />
-                                <Input
-                                    placeholder="HASŁO"
-                                    type="password"
-                                    name="password"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.password}
-                                />
-                                <Button
-                                    type="submit"
-                                >Zaloguj się!
+const LoginPage = ({ loginFailedMessage }) => (
+    <AccountPanelTemplate>
+        {({ handleChange, handleBlur, values }) => {
+            return (
+                <Form>
+                    <StyledWrapper>
+                        <Heading as="h2">FAMNOTES</Heading>
+                        <StyledHeading>Twoja nowa ulubiona aplikacja do zarządzania obowiązkami w domu!</StyledHeading>
+                        <StyledForm>
+                            <BadLogin
+                                loginFailedMessage={loginFailedMessage}
+                                handleChange={handleChange}
+                                handleBlur={handleBlur}
+                                value={values.login}
+                            />
+                            <Input
+                                placeholder="HASŁO"
+                                type="password"
+                                name="password"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.password}
+                            />
+                            <Button
+                                type="submit"
+                            >Zaloguj się!
                                 </Button>
-                                <StyledSmallButton
-                                    secondary="true"
-                                    as={Link}
-                                    to="/register">
-                                    Chcę się zarejestrować!
-                                </StyledSmallButton>
-                            </StyledForm>
-                            <StyledInfoLink
+                            <StyledSmallButton
+                                secondary="true"
                                 as={Link}
-                                to="/info">
-                                Dowiedz się więcej o <span>FAMNOTES</span>
-                            </StyledInfoLink>
-                        </StyledWrapper>
-                    </Form>
-                )
-            }}
-        </AccountPanelTemplate>
-    );
-}
+                                to="/register">
+                                Chcę się zarejestrować!
+                                </StyledSmallButton>
+                        </StyledForm>
+                        <StyledInfoLink
+                            as={Link}
+                            to="/info">
+                            Dowiedz się więcej o <span>FAMNOTES</span>
+                        </StyledInfoLink>
+                    </StyledWrapper>
+                </Form>
+            )
+        }}
+    </AccountPanelTemplate>
+);
 
 const mapStateToProps = (state) => ({
     loginFailedMessage: state.loginFailedMessage,

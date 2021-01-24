@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import appReducer from '../reducers/appReducer';
-
 export const saveToLocalStorage = state => {
     const serializedState = JSON.stringify(state);
     localStorage.setItem('state', serializedState);

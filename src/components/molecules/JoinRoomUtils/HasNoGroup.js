@@ -58,6 +58,7 @@ const mapDispatchToProps = dispatch => ({
 
 HasNoGroup.propTypes = {
     joinGroup: PropTypes.func,
+    setIsJoined: PropTypes.func,
 }
 
 export default connect(null, mapDispatchToProps)(HasNoGroup);

@@ -124,3 +124,60 @@ resize:none;
     width:300px;
 }
 `;
+
+
+// STYLES FOR GROUPCREATED COMPONENT
+
+export const StyledCreatedGroupWrapper = styled.div`
+display:flex;
+width: 100vw;
+height:100vh;
+max-height: 100vh;
+overflow:hidden;
+justify-content:center;
+align-items:center;
+position:relative;
+`;
+export const StyledHeadingsWrapper = styled.div`
+width: 50vw;
+height: 50vh;
+background-color:white;
+position:absolute;
+border-radius: 25px;
+transform:translateX(-150%);
+animation: fromLeftToRight .4s .2s linear both;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:flex-start;
+padding-top: 100px;
+@media(max-width:845px) {
+    width: 70vw;
+}
+@media(max-width:500px) {
+    width: 80vw;
+    height: 65vh;
+}
+`;
+export const StyledHeading = styled(Heading)`
+text-align:center;
+@media(max-width: 1100px) {
+    width:80%;
+}
+`;
+export const StyledCreatedGroupParagraph = styled(Paragraph)`
+animation: groupCreatedInfoAnim 1s 1.4s linear both;
+text-align:center;
+@media(max-width:1475px) {
+    width: 80%;
+}
+`;
+export const StyledCreatedGroupButton = styled(Button)`
+width:270px;
+color:black;
+display: flex;
+justify-content:center;
+align-items:center;
+text-decoration:none;
+animation: groupCreatedInfoAnim 1s 1.8s linear both;
+`;

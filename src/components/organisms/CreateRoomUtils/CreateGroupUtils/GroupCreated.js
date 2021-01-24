@@ -1,73 +1,31 @@
 import React from 'react';
-import styled from 'styled-components';
-import Heading from '../../../atoms/Heading/Heading';
-import Paragraph from '../../../atoms/Paragraph/Paragraph';
-import Button from '../../../atoms/Button/Button';
 import { Link } from 'react-router-dom';
+import {
+    StyledCreatedGroupWrapper,
+    StyledHeadingsWrapper,
+    StyledHeading,
+    StyledCreatedGroupParagraph,
+    StyledCreatedGroupButton,
+} from '../../../../views/styles/CreateRoomStyles';
 
-const StyledWrapper = styled.div`
-display:flex;
-width: 100vw;
-height:100vh;
-max-height: 100vh;
-overflow:hidden;
-justify-content:center;
-align-items:center;
-position:relative;
-`;
-const StyledHeadingsWrapper = styled.div`
-width: 50vw;
-height: 50vh;
-background-color:white;
-position:absolute;
-border-radius: 25px;
-transform:translateX(-150%);
-animation: fromLeftToRight .4s .2s linear both;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:flex-start;
-padding-top: 100px;
-@media(max-width:845px) {
-    width: 70vw;
-}
-@media(max-width:500px) {
-    width: 80vw;
-    height: 65vh;
-}
-`;
-const StyledHeading = styled(Heading)`
-text-align:center;
-@media(max-width: 1100px) {
-    width:80%;
-}
-`;
-const StyledParagraph = styled(Paragraph)`
-animation: groupCreatedInfoAnim 1s 1.4s linear both;
-text-align:center;
-@media(max-width:1475px) {
-    width: 80%;
-}
-`;
-const StyledButton = styled(Button)`
-width:270px;
-color:black;
-display: flex;
-justify-content:center;
-align-items:center;
-text-decoration:none;
-animation: groupCreatedInfoAnim 1s 1.8s linear both;
-`;
-const GroupCreated = () => {
-    return (
-        <StyledWrapper>
-            <StyledHeadingsWrapper>
-                <StyledHeading as="h2">Super! Właśnie założyłeś grupę!</StyledHeading>
-                <StyledParagraph>Możesz teraz podzielić się TAG'iem grupy ze znajomymi i razem dodawać nowe zadania!</StyledParagraph>
-                <StyledButton as={Link} to="/room">Przejdź do swojej grupy!</StyledButton>
-            </StyledHeadingsWrapper>
-        </StyledWrapper>
-    );
-}
+const GroupCreated = () => (
+    <StyledCreatedGroupWrapper>
+        <StyledHeadingsWrapper>
+            <StyledHeading
+                as="h2">
+                Super! Właśnie założyłeś grupę!
+                </StyledHeading>
+            <StyledCreatedGroupParagraph>
+                Możesz teraz podzielić się TAG'iem grupy ze znajomymi i razem dodawać nowe zadania!
+                </StyledCreatedGroupParagraph>
+            <StyledCreatedGroupButton
+                as={Link}
+                to="/room">
+                Przejdź do swojej grupy!
+                </StyledCreatedGroupButton>
+        </StyledHeadingsWrapper>
+    </StyledCreatedGroupWrapper>
+);
+
 
 export default GroupCreated;

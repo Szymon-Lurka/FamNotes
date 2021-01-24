@@ -19,7 +19,6 @@ const CreateGroupForm = ({ failedMessage }) => {
     return (
         <CreateGroup>
             {({ handleChange, handleBlur, values }) => {
-                let local = JSON.parse(localStorage.getItem('state'));
                 return (
                     <Form>
                         <BadName

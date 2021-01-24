@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import MainPagesTemplate from '../components/templates/MainPagesTemplate';
 import styled from 'styled-components';
 import HasGroup from '../components/organisms/MyRoomsUtils/HasGroup';
 import HasNoGroup from '../components/organisms/MyRoomsUtils/HasNoGroup';
+import { connect } from 'react-redux';
 
 const StyledWrapper = styled.div`
 margin-top:100px;
@@ -18,17 +19,16 @@ z-index:1;
 
 `;
 
-const MyRooms = () => {
-    // const [isBodyClicked, setIsBodyClicked] = useState(false);
-    const local = JSON.parse(localStorage.getItem('state'));
+const MyRooms = ({ groupTag }) => {
+    if (groupTag === undefined) {
+        groupTag = null;
+    };
     return (
         <MainPagesTemplate>
             <StyledBackground />
             <StyledWrapper>
-                {local.groupTag !== null ?
-                    <HasGroup
-                        local={local}
-                    />
+                {groupTag !== null ?
+                    <HasGroup />
                     :
                     <HasNoGroup />
                 }
@@ -36,7 +36,8 @@ const MyRooms = () => {
         </MainPagesTemplate>
     );
 }
+const mapStateToProps = ({ groupTag }) => ({
+    groupTag,
+});
 
-
-
-export default MyRooms;
+export default connect(mapStateToProps)(MyRooms);

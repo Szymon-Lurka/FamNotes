@@ -4,18 +4,19 @@ import styled from 'styled-components';
 import HasNoGroup from '../components/molecules/JoinRoomUtils/HasNoGroup';
 import JoinedToGroup from '../components/molecules/JoinRoomUtils/JoinedToGroup';
 import HasGroup from '../components/molecules/JoinRoomUtils/HasGroup';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const StyledWrapper = styled.div`
 margin-top: 100px;
 `;
 
-const JoinRoom = () => {
+const JoinRoom = ({ userGroupID }) => {
     const [isJoined, setIsJoined] = useState(false);
-    let local = JSON.parse(localStorage.getItem('state'));
     return (
         <MainPagesTemplate>
             <StyledWrapper>
-                {local.userGroupID !== null ?
+                {userGroupID !== null ?
                     isJoined ? (
                         <JoinedToGroup />
                     ) : (
@@ -32,6 +33,12 @@ const JoinRoom = () => {
     );
 }
 
+const mapStateToProps = ({ userGroupID }) => ({
+    userGroupID
+});
 
+JoinRoom.propTypes = {
+    userGroupID: PropTypes.string,
+};
 
-export default JoinRoom;
+export default connect(mapStateToProps)(JoinRoom);

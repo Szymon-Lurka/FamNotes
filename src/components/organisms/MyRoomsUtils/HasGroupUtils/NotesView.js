@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getNotes } from '../../../../action';
-import store from '../../../../store/index';
 import Heading from '../../../atoms/Heading/Heading';
 import TaskCard from '../../../molecules/TaskCard/TaskCard';
 import plusIcon from '../../../../assets/svg/plus.svg';
 import NotesViewModal from './NotesViewModal';
+import PropTypes from 'prop-types';
 
 import {
     StyledWrapper,
     StyledAddButton,
 } from '../../../../views/styles/MyRoomsStyles';
 
-const NotesView = ({ getNotes }) => {
+const NotesView = ({ getNotes, notes }) => {
     const [isModalActive, setIsModalActive] = useState(false);
-    let state = store.getState();
-    getNotes();
+    useEffect(() => {
+        getNotes();
+    }, []);
     const handleButtonAddClick = async () => {
         setIsModalActive(true);
-        state = await store.getState();
     }
     const closeModal = async () => {
         setIsModalActive(false);
@@ -29,9 +29,9 @@ const NotesView = ({ getNotes }) => {
                 isVisible={isModalActive}
                 closeModal={closeModal}
             />
-            {state.notes !== undefined ?
-                state.notes.length > 0 ? (
-                    state.notes.map(note => (
+            {notes !== undefined ?
+                notes.length > 0 ? (
+                    notes.map(note => (
                         <>
                             <TaskCard
                                 title={note.title}
@@ -65,5 +65,13 @@ const mapDispatchToProps = dispatch => ({
     getNotes: () => dispatch(getNotes())
 })
 
+const mapStateToProps = (state) => ({
+    notes: state.notes,
+})
 
-export default connect(null, mapDispatchToProps)(NotesView);
+NotesView.propTypes = {
+    getNotes: PropTypes.func,
+    notes: PropTypes.array,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NotesView);

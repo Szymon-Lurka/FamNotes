@@ -1,4 +1,31 @@
-import { CREATEGROUP_SUCCESS, CREATEGROUP_FAILURE, EXITGROUP_SUCCESS, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAILURE, REGISTER_SUCCESS, JOINGROUP_SUCCESS, JOINGROUP_FAILURE, GETNOTES_SUCCESS, DELETENOTE_SUCCESS, ADDNOTE_SUCCESS } from '../action/index';
+/*
+/////////////////////////////////////////////////////////////////////////////
+need to refactor reducers
+/////////////////////////////////////////////////////////////////////////////
+*/
+
+
+import {
+    GETNOTES_SUCCESS,
+    DELETENOTE_SUCCESS,
+    ADDNOTE_SUCCESS
+} from '../action/tasks-actions';
+
+import {
+    LOGIN_SUCCESS,
+    LOGIN_FAILURE,
+    LOGOUT_SUCCESS,
+    REGISTER_SUCCESS,
+    REGISTER_FAILURE,
+} from '../action/auth-actions';
+
+import {
+    CREATEGROUP_SUCCESS,
+    CREATEGROUP_FAILURE,
+    EXITGROUP_SUCCESS,
+    JOINGROUP_SUCCESS,
+    JOINGROUP_FAILURE,
+} from '../action/group-actions';
 const initialState = {};
 
 const appReducer = (state = initialState, action) => {
@@ -37,24 +64,18 @@ const appReducer = (state = initialState, action) => {
         case CREATEGROUP_FAILURE:
             return {
                 ...state,
-                isLogged: true,
                 failedMessage: action.payload.data.message,
                 isCreated: false,
             }
         case CREATEGROUP_SUCCESS:
             return {
                 ...state,
-                isLogged: true,
-                nickName: action.payload.data.login,
                 userGroupID: action.payload.data.id,
-                userID: state.userID,
-                userTOKEN: state.userToken,
                 groupTitle: action.payload.data.name,
                 groupDescription: action.payload.data.description,
                 groupTag: action.payload.data.groupTag,
                 isCreated: true,
                 isExit: false,
-                failedMessage: null,
             }
         case ADDNOTE_SUCCESS:
             return {
@@ -69,12 +90,7 @@ const appReducer = (state = initialState, action) => {
         case EXITGROUP_SUCCESS:
             return {
                 ...state,
-                isLogged: false,
-                nickName: action.payload.data.login,
                 userGroupID: null,
-                userID: state.payload.data.id,
-                userTOKEN: state.payload.data.currentTokenId,
-                isCreatedGroup: null,
                 isExit: true,
                 isJoined: false,
                 notes: [],
